@@ -1,13 +1,18 @@
 #!/bin/bash
 
-if [ -e ../output/main ]
+pushd ../src
+
+if [ -e ./output/main ]
 then
     make clean
 fi
 
-if ! [ -d ../output ]
+if ! [ -d ./output ]
 then
-    mkdir -p ../output
+    mkdir -p ./output
 fi
 
-make all
+make all || exit -1;
+
+./output/main
+popd
